@@ -1,0 +1,12 @@
+<!-- templates/managecompany.html -->
+{% extends 'base.html' %}
+
+{% block title %} Gestión del Sitio {% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hola {{ user.username }}!
+  Estás en el portal de Administración del Sitio
+
+{% endif %}
+{% endblock %}
