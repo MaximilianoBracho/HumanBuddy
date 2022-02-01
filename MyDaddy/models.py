@@ -1,11 +1,11 @@
 from django.db import models
-from SiteAdmin import models as SiteAdmin
+from SiteAdmin.models import Person, Animal
 
-class Daddy(SiteAdmin.Person):
+class Daddy(Person):
     pass
     
-class Pet(SiteAdmin.Animal):
+class Pet(Animal):
     
-    nickname=models.CharField('Nombre',max_length=50)
-    birthdate=models.DateField('01/01/1990', auto_now=False, auto_now_add=False)
-    buddy=models.IntegerField()
+    nickname=models.CharField('Nombre',max_length=50,default="")
+    birthdate=models.DateField('1950-01-01',default="1950-01-01")
+    buddy_id=models.IntegerField()

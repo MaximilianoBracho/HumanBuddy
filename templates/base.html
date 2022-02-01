@@ -31,10 +31,10 @@
                   {% load site_commons %}
                   {% if user|has_group:"Vet" %}
                     <li class="nav-item"><a class="nav-link" href="/vet/">Portal Veterinaria</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/care/">Realizar Atenciones</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/care/">Gestionar Atenciones</a></li>
                   {% endif %}     
-                  {% if user|has_group:"Human" %}
-                    <li class="nav-item"><a class="nav-link" href="/human/">Portal Humano</a></li>
+                  {% if user|has_group:"Daddy" %}
+                    <li class="nav-item"><a class="nav-link" href="/daddy/">Portal Humano</a></li>
                   {% endif %}  
                   {% if user|has_group:"Administrator" %}}
                     <li class="nav-item"><a class="nav-link" href="/admin/">Admin Permisos</a></li>

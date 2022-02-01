@@ -1,9 +1,9 @@
 from django.db import models
-from SiteAdmin import models as SiteAdmin
+from SiteAdmin.models import Transaction
 
-class CareAttention(SiteAdmin.Transaction):
+class CareAttention(Transaction):
     
-    motive=models.CharField('Motivo de Consulta',max_length=200)
-    diagnosis=models.CharField('Diagnóstico',max_length=200)
-    treatment=models.CharField('Tratamiento',max_length=200)
+    motive=models.CharField('Motivo de Consulta',max_length=200,default="")
+    diagnosis=models.CharField('Diagnóstico',max_length=200,default="")
+    treatment=models.CharField('Tratamiento',max_length=200,default="")
     

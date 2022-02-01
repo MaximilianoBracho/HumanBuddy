@@ -1,13 +1,13 @@
 from django.db import models
-from SiteAdmin import models as SiteAdmin
+from SiteAdmin.models import Company, Employee
 
-class Vet(SiteAdmin.Company):
+class Vet(Company):
     pass
     
-class Veterinarian(SiteAdmin.Employee):
+class Veterinarian(Employee):
     
-    license=models.CharField('Licencia',max_length=11)
+    license=models.CharField('Licencia',max_length=11,default="")
     
-class Employee(SiteAdmin.Employee):
+class Employee(Employee):
     
     pass

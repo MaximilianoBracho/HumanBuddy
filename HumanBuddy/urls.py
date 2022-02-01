@@ -26,6 +26,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('siteAdmin/',include('SiteAdmin.urls')),
     path('vet/',include('MyVet.urls')),
-    path('human/',include('MyDaddy.urls')),
+    path('daddy/',include('MyDaddy.urls')),
     path('care/',include('MyCare.urls')),
 ]
