@@ -28,14 +28,15 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
                 {% if user.is_authenticated %}
-                  {% if user.username == 'vet' %}
+                  {% load site_commons %}
+                  {% if user|has_group:"Vet" %}
                     <li class="nav-item"><a class="nav-link" href="/vet/">Portal Veterinaria</a></li>
                     <li class="nav-item"><a class="nav-link" href="/care/">Realizar Atenciones</a></li>
                   {% endif %}     
-                  {% if user.username == 'human' %}
+                  {% if user|has_group:"Human" %}
                     <li class="nav-item"><a class="nav-link" href="/human/">Portal Humano</a></li>
                   {% endif %}  
-                  {% if user.username == 'mbracho' %}
+                  {% if user|has_group:"Administrator" %}}
                     <li class="nav-item"><a class="nav-link" href="/admin/">Admin Permisos</a></li>
                     <li class="nav-item"><a class="nav-link" href="/siteAdmin/">Admin Sitio</a></li>
                   {% endif %}                 
