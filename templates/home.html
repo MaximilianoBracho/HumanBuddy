@@ -1,0 +1,15 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+    <p>Hola {{ user.username }}!</p>
+    <p>Bienvenido a HumanDaddy</p>
+    La comunidad de cuidado de nuestros hijos animales!
+  {% else %}
+    <p>No has hecho Login!</p>
+    <p>Por favor accede desde el menu superior.</p>
+  {% endif %}
+{% endblock %}

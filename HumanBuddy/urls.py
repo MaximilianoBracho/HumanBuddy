@@ -15,7 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include
+from HumanBuddy import views
+from django.conf.urls.static import static
+from django.views.generic import RedirectView
 
 urlpatterns = [
+    path('',views.home),
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('vet/',include('MyVet.urls')),
+    path('human/',include('MyDaddy.urls')),
+    path('care/',include('MyCare.urls')),
 ]
