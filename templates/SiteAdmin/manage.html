@@ -1,12 +1,14 @@
-<!-- templates/managecompany.html -->
 {% extends 'base.html' %}
 
-{% block title %} Gestión del Sitio {% endblock %}
+{% block title %} Gestión de Veterinarias {% endblock %}
 
 {% block content %}
 {% if user.is_authenticated %}
   Hola {{ user.username }}!
   Estás en el portal de Administración del Sitio
+
+  <p><button onclick= "location.href='{% url 'Gestión de Veterinarias' %}'" class="btn btn-primary">Gestión de Veterinarias</button></p>
+  <p><button onclick= "location.href='{% url 'Gestión de Padres' %}'" class="btn btn-primary">Gestión de Padres</button></p>
 
 {% endif %}
 {% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %} Gestión de Veterinarias {% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hola {{ user.username }}!
+  Estás en el portal de Administración de Veterinarias
+
+  <style type="text/css">
+    .tg  {border-collapse:collapse;border-spacing:0;}
+    .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg .tg-0lax{text-align:middle;vertical-align:middle}
+  </style>
+  
+  <table class="tg">
+    <tr>
+        <th>ID</th>
+        <th>CUIT</th>
+        <th>Razón Social</th>
+        <th>Nombre</th>
+        <th>Fecha de Inscripción</th>
+        <th>Dirección Fiscal</th>
+        <th>Dirección Real</th>
+        <th>Teléfono</th>
+        <th>Mail</th>
+        <th>Fecha de Alta</th>
+        <th>Activo</th>
+    </tr>
+    
+    {% for v in vets %}
+      <tr>    
+          <td>{{v.id}}</td>
+          <td>{{v.fiscal_id}}</td>
+          <td>{{v.fiscal_name}}</td>
+          <td>{{v.name}}</td>
+          <td>{{v.start_date}}</td>
+          <td>{{v.fiscal_address}}</td>
+          <td>{{v.real_address}}</td>
+          <td>{{v.phone}}</td>
+          <td>{{v.mail}}</td>
+          <td>{{v.creation_date}}</td>
+          <td>{{v.active}}</td>
+          <td><button onclick="open_modal('{% url 'Editar Veterinarias' v.id %}')" class="btn btn-secondary">Editar</button></td>
+          <td><button onclick= "location.href='{% url 'Eliminar Veterinarias' v.id %}'" class="btn btn-danger">Eliminar</button></td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <p>
+    <button onclick="open_modal('{% url 'Alta de Veterinarias'%}')" class="btn btn-primary">Alta de Veterinaria</button>
+    <button onclick= "location.href='{% url 'Gestión de Plataforma' %}'" class="btn btn-danger">Volver</button></p>
+
+  <div class="modal fade" id="modal" role="dialog"></div>
+
+{% endif %}
+{% endblock content %}
+
+{% block extrajs %}
+
+  <script type="text/javascript">
+    
+    var $ = jQuery.noConflict();
+
+    function open_modal(url){
+      $('#modal').load(url, function(){
+        $(this).modal('show')
+      })
+    }
+
+  </script>
+{% endblock extrajs %}
+

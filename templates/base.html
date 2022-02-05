@@ -14,6 +14,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    <link href="{% static 'js/jquery-ui-1.13.1/jquery-ui.min.css' %}" rel="stylesheet">
+    <link href="{% static 'js/jquery-ui-1.13.1/jquery-ui.structure.min.css' %}" rel="stylesheet">
+    <link href="{% static 'js/jquery-ui-1.13.1/jquery-ui.theme.min.css' %}" rel="stylesheet">
+
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui-1.13.1/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/customs.js' %}"></script>
   </head>
   
   <body class="d-flex flex-column">
@@ -37,8 +44,8 @@
                     <li class="nav-item"><a class="nav-link" href="/daddy/">Portal Humano</a></li>
                   {% endif %}  
                   {% if user|has_group:"Administrator" %}}
-                    <li class="nav-item"><a class="nav-link" href="/admin/">Admin Permisos</a></li>
                     <li class="nav-item"><a class="nav-link" href="/siteAdmin/">Admin Sitio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/admin/">Admin Permisos</a></li>
                   {% endif %}                 
                   <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Salir</a></li>
                 {% else %}
@@ -48,12 +55,15 @@
           </div>
         </div>
       </nav>
-
       {% block content %}
 
-      {% endblock %}
+      {% endblock %}    
       
+      {% block extrajs %}
+
+      {% endblock extrajs %}
     <main>
+
     <!-- Footer-->
     <footer class="bg-dark py-4 mt-auto">
       <div class="container px-5">

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %} Gestión de Padres {% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hola {{ user.username }}!
+  Estás en el portal de Administración de Padres
+
+  <style type="text/css">
+    .tg  {border-collapse:collapse;border-spacing:0;}
+    .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg .tg-0lax{text-align:middle;vertical-align:middle}
+  </style>
+  
+  <table class="tg">
+    <tr>
+        <th>ID</th>
+        <th>DNI</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Fecha de Nacimiento</th>
+        <th>Dirección</th>
+        <th>Teléfono</th>
+        <th>Celular</th>
+        <th>Mail</th>
+        <th>Fecha de Alta</th>
+        <th>Activo</th>
+    </tr>
+    
+    {% for d in daddies %}
+      <tr>    
+          <td>{{d.id}}</td>
+          <td>{{d.person_id}}</td>
+          <td>{{d.name}}</td>
+          <td>{{d.surname}}</td>
+          <td>{{d.birthdate}}</td>
+          <td>{{d.address}}</td>
+          <td>{{d.phone}}</td>
+          <td>{{d.cellphone}}</td>
+          <td>{{d.mail}}</td>
+          <td>{{d.creation_date}}</td>
+          <td>{{d.active}}</td>
+          <td><button onclick="open_modal('{% url 'Editar Padres' d.id %}')" class="btn btn-secondary">Editar</button></td>
+          <td><button onclick= "location.href='{% url 'Eliminar Padres' d.id %}'" class="btn btn-danger">Eliminar</button></td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <p>
+    <button onclick="open_modal('{% url 'Alta de Padres'%}')" class="btn btn-primary">Alta de Padres</button>
+    <button onclick= "location.href='{% url 'Gestión de Plataforma' %}'" class="btn btn-danger">Volver</button>
+  </p>
+
+  <div class="modal fade" id="modal" role="dialog"></div>
+
+{% endif %}
+{% endblock content %}
+
+{% block extrajs %}
+
+  <script type="text/javascript">
+    
+    var $ = jQuery.noConflict();
+
+    function open_modal(url){
+      $('#modal').load(url, function(){
+        $(this).modal('show')
+      })
+    }
+
+  </script>
+{% endblock extrajs %}
+

@@ -11,11 +11,11 @@ class Entity(models.Model):
 class Company(Entity):
     
     fiscal_id=models.CharField('CUIT',max_length=11,default="")   
-    fiscal_name=models.CharField('Razon Social',max_length=100,default="")
+    fiscal_name=models.CharField('Razón Social',max_length=100,default="")
     name=models.CharField('Nombre de Veterinaria',max_length=100,default="")
-    start_date=models.DateField('1950-01-01',default="1950-01-01")
-    fiscal_address=models.CharField('Direccion Fiscal',max_length=100,default="")
-    real_address=models.CharField('Direccion Real',max_length=100,default="")
+    start_date=models.DateField('Fecha de Inscripción',auto_now_add=False,auto_now=False,null=True)
+    fiscal_address=models.CharField('Dirección Fiscal',max_length=100,default="")
+    real_address=models.CharField('Dirección Real',max_length=100,default="")
     phone=models.CharField('Teléfono',max_length=20,default="")
     mail=models.EmailField(default="info@mail.com")
     
@@ -28,7 +28,7 @@ class Person(Entity):
     person_id=models.CharField('DNI',max_length=8,default="") 
     name=models.CharField('Nombre',max_length=50,default="")
     surname=models.CharField('Apellido',max_length=50,default="")
-    birthdate=models.DateField('1950-01-01',default="1950-01-01")
+    birthdate=models.DateField('Fecha de Nacimiento',auto_now_add=False,auto_now=False,null=True)
     address=models.CharField('Domicilio',max_length=100,default="")
     phone=models.CharField('Teléfono',max_length=20,default="")
     cellphone=models.CharField('Celular',max_length=20,default="")
