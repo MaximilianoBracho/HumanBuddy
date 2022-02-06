@@ -27,12 +27,15 @@
     </div>
 
     <div>
-      <input type="submit" value="login" />
+      <input type="submit" value="login" class="btn btn-primary" />
       <input type="hidden" name="next" value="{{ next }}" />
     </div>
     </form>
-
+    <p></p>
     {# Assumes you setup the password_reset view in your URLconf #}
-    <p><a href="{% url 'password_reset' %}">¿Olvidó su Contraseña?</a></p>
+    <p>
+      <a href="{% url 'password_reset' %}" class="btn btn-danger">¿Olvidó su Contraseña?</a>
+      <a href="{% url 'signup' %}" class="btn btn-secondary">Registrarse</a>
+    </p>
 
 {% endblock %}
