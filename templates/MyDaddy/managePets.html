@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %} Gestión de Padres {% endblock %}
+{% block title %} Gestión de Mascotas {% endblock %}
 
 {% block content %}
 {% if user.is_authenticated %}
   Hola {{ user.username }}!
-  Estás en el portal de Administración de Padres
+  Estás en el portal de Administración de Mascotas
 
   <style type="text/css">
     .tg  {border-collapse:collapse;border-spacing:0;}
@@ -17,43 +17,40 @@
   <table class="tg">
     <tr>
         <th>ID</th>
-        <th>DNI</th>
         <th>Nombre</th>
-        <th>Apellido</th>
         <th>Fecha de Nacimiento</th>
-        <th>Dirección</th>
-        <th>Teléfono</th>
-        <th>Celular</th>
-        <th>Mail</th>
-        <th>Usuario</th>
+        <th>ID Veterinaria</th>
+        <th>Especie</th>
+        <th>Familia</th>
+        <th>Raza</th>
+        <th>Color</th>
+        <th>Descripción</th>
         <th>Fecha de Alta</th>
         <th>Activo</th>
     </tr>
     
-    {% for d in daddies %}
+    {% for p in pets %}
       <tr>    
-          <td>{{d.id}}</td>
-          <td>{{d.person_id}}</td>
-          <td>{{d.name}}</td>
-          <td>{{d.surname}}</td>
-          <td>{{d.birthdate}}</td>
-          <td>{{d.address}}</td>
-          <td>{{d.phone}}</td>
-          <td>{{d.cellphone}}</td>
-          <td>{{d.mail}}</td>
-          <td>{{d.user_id}}</td>
-          <td>{{d.creation_date}}</td>
-          <td>{{d.active}}</td>
-          <td><button onclick="open_modal('{% url 'Editar Padres' d.id %}')" class="btn btn-secondary">Editar</button></td>
-          <td><button onclick= "location.href='{% url 'Eliminar Padres' d.id %}'" class="btn btn-danger">Eliminar</button></td>
+          <td>{{p.id}}</td>
+          <td>{{p.nickname}}</td>
+          <td>{{p.birthdate}}</td>
+          <td>{{p.vetId}}</td>
+          <td>{{p.species}}</td>
+          <td>{{p.family}}</td>
+          <td>{{p.race}}</td>
+          <td>{{p.color}}</td>
+          <td>{{p.description}}</td>
+          <td>{{p.creation_date}}</td>
+          <td>{{p.active}}</td>
+          <td><button onclick="open_modal('{% url 'Editar Mascotas' v.id %}')" class="btn btn-secondary">Editar</button></td>
+          <td><button onclick= "location.href='{% url 'Eliminar Mascotas' v.id %}'" class="btn btn-danger">Eliminar</button></td>
       </tr>
     {% endfor %}
   </table>
 
   <p>
-    <button onclick="open_modal('{% url 'Alta de Padres'%}')" class="btn btn-primary">Alta de Padres</button>
-    <button onclick= "location.href='{% url 'Gestión de Plataforma' %}'" class="btn btn-danger">Volver</button>
-  </p>
+    <button onclick="open_modal('{% url 'Alta de Mascotas'%}')" class="btn btn-primary">Alta de Mascotas</button>
+    <button onclick= "location.href='{% url 'Portal de Padres' %}'" class="btn btn-danger">Volver</button></p>
 
   <div class="modal fade" id="modal" role="dialog"></div>
 
@@ -74,4 +71,3 @@
 
   </script>
 {% endblock extrajs %}
-

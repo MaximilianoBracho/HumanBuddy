@@ -2,10 +2,11 @@ from django.db import models
 from SiteAdmin.models import Person, Animal
 
 class Daddy(Person):
-    pass
+    user_id=models.IntegerField(null=True)
     
 class Pet(Animal):
     
     nickname=models.CharField('Nombre',max_length=50,default="")
-    birthdate=models.DateField('1950-01-01',default="1950-01-01")
-    buddy_id=models.IntegerField()
+    birthdate=models.DateField('Fecha de Nacimiento',auto_now_add=False,auto_now=False,null=True)
+    daddy_id=models.IntegerField()
+    vet_id=models.IntegerField(null=True)

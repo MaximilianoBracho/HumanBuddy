@@ -3,7 +3,6 @@ from django.shortcuts import redirect, render
 from django.template import loader
 from MyVet.models import Vet
 from MyDaddy.models import Daddy
-
 from SiteAdmin.forms import VetForm, DaddyForm
 
 # Create your views here.
@@ -86,7 +85,7 @@ def editVets(request,vetID):
         
         return render(request, 'SiteAdmin/editVets.html',{"form": v_form, "id":vet.id})
     
-def deleteVets(request,vetID):
+def deleteVets(request, vetID):
     
     vet = Vet.objects.get(id=vetID)
     vet.delete()
@@ -118,7 +117,8 @@ def addDaddies(request):
                 address=data["address"],
                 phone=data["phone"],
                 cellphone=data["cellphone"],
-                mail=data["mail"]
+                mail=data["mail"],
+                user_id=data["user_id"]
             )
             
             daddy.save()

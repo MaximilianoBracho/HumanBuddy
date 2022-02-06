@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %} Gestión de Alta de Padre {% endblock %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+    <form action ="{% url 'Alta de Padre' %}" method="POST">
+    
+      {% csrf_token %}
+      <table>{{form.as_table}}</table>
+
+      <input type="submit", class="btn btn-primary", value="Enviar">
+    </form>
+  {% endif %}
+{% endblock %}

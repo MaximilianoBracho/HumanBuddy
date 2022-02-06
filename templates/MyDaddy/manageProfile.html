@@ -1,12 +1,12 @@
 <!-- templates/managecompany.html -->
 {% extends 'base.html' %}
 
-{% block title %} Portal de Padres {% endblock %}
+{% block title %} Gestión de Perfil {% endblock %}
 
 {% block content %}
 {% if user.is_authenticated %}
   Hola {{ user.username }}!
-  Estás en el portal de Padres
+  Gestión de Perfil
 
   <p><button onclick= "location.href='{% url 'Gestión de Mascotas' %}'" class="btn btn-primary">Gestión de Mascotas</button></p>
   <p><button onclick= "location.href='{% url 'Gestión de Perfil' %}'" class="btn btn-primary">Gestión de Perfil</button></p>

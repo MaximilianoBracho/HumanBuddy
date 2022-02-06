@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.models import Group
+from django.contrib.auth import authenticate, login
 
 
 def UserRegister(request):
@@ -14,7 +15,13 @@ def UserRegister(request):
             user.groups.add(group)
             group = Group.objects.get(name='User')
             user.groups.add(group)
-            return redirect('login')
+            
+            new_user = authenticate(username=form.cleaned_data['username'],
+                                    password=form.cleaned_data['password1'],
+                                    )
+            login(request, new_user)
+            
+            return redirect('Alta de Padre')
     else:
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})

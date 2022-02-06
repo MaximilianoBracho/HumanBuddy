@@ -1,10 +1,8 @@
 from dataclasses import fields
-from typing_extensions import Required
 from django import forms
-from django.forms import ModelForm, fields_for_model
-from numpy import require
-from MyVet.models import Vet, Veterinarian, Employee
-from MyDaddy.models import Daddy, Pet
+from django.forms import ModelForm
+from MyVet.models import Vet
+from MyDaddy.models import Daddy
 
 class VetForm(ModelForm):
     
