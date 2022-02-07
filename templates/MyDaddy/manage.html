@@ -9,7 +9,23 @@
   Estás en el portal de Padres
 
   <p><button onclick= "location.href='{% url 'Gestión de Mascotas' %}'" class="btn btn-primary">Gestión de Mascotas</button></p>
-  <p><button onclick= "location.href='{% url 'Gestión de Perfil' %}'" class="btn btn-primary">Gestión de Perfil</button></p>
+  <button onclick="open_modal('{% url 'Editar Perfil'%}')" class="btn btn-primary">Editar Perfil</button>
 
+  <div class="modal fade" id="modal" role="dialog"></div>
 {% endif %}
 {% endblock %}
+
+{% block extrajs %}
+
+  <script type="text/javascript">
+    
+    var $ = jQuery.noConflict();
+
+    function open_modal(url){
+      $('#modal').load(url, function(){
+        $(this).modal('show')
+      })
+    }
+
+  </script>
+{% endblock extrajs %}

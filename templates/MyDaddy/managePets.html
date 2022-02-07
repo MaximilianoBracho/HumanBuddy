@@ -42,8 +42,8 @@
           <td>{{p.description}}</td>
           <td>{{p.creation_date}}</td>
           <td>{{p.active}}</td>
-          <td><button onclick="open_modal('{% url 'Editar Mascotas' v.id %}')" class="btn btn-secondary">Editar</button></td>
-          <td><button onclick= "location.href='{% url 'Eliminar Mascotas' v.id %}'" class="btn btn-danger">Eliminar</button></td>
+          <td><button onclick="open_modal('{% url 'Editar Mascotas' p.id %}')" class="btn btn-secondary">Editar</button></td>
+          <td><button onclick= "location.href='{% url 'Eliminar Mascotas' p.id %}'" class="btn btn-danger">Eliminar</button></td>
       </tr>
     {% endfor %}
   </table>

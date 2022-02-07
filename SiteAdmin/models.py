@@ -54,7 +54,6 @@ class Animal(Entity):
     family=models.CharField('Familia',max_length=50,null=True,default="")
     race=models.CharField('Raza',max_length=50,null=True,default="")
     color=models.CharField('Color',max_length=50,null=True,default="")
-    description=models.CharField('Descripción',null=True,max_length=200,default="")
     
     class Meta:
         abstract = True

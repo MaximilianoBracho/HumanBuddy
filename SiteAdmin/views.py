@@ -41,7 +41,8 @@ def addVets(request):
                 fiscal_address=data["fiscal_address"],
                 real_address=data["real_address"],
                 phone=data["phone"],
-                mail=data["mail"]
+                mail=data["mail"],
+                user_id=data["user_id"]
             )
             
             vet.save()
@@ -80,7 +81,8 @@ def editVets(request,vetID):
                 "fiscal_address":vet.fiscal_address,
                 "real_address":vet.real_address,
                 "phone":vet.phone,
-                "mail":vet.mail
+                "mail":vet.mail,
+                "user_id":vet.user_id
             })
         
         return render(request, 'SiteAdmin/editVets.html',{"form": v_form, "id":vet.id})
@@ -157,7 +159,8 @@ def editDaddies(request,daddyID):
                 "address":daddy.address,
                 "phone":daddy.phone,
                 "cellphone":daddy.cellphone,
-                "mail":daddy.mail
+                "mail":daddy.mail,
+                "user_id":daddy.user_id
             })
         
         return render(request, 'SiteAdmin/editDaddies.html',{"form": v_form, "id":daddy.id})

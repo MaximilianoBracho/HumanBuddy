@@ -1,10 +1,10 @@
 <div class="modal-dialog modal-lg" role="document">
   <div class="modal-content">
     <div class="modal-header">
-      <h2 class="modal-title">Edición de Mascotas</h2>
+      <h2 class="modal-title">Edición de Perfil</h2>
     </div>
     <div class="modal-body">
-      <form action ="{% url 'Editar Mascotas' id %}" method="POST">{% csrf_token %}
+      <form action ="{% url 'Editar Perfil' %}" method="POST">{% csrf_token %}
 
         <table>
             
@@ -16,7 +16,7 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button onclick= "location.href='{% url 'Gestión de Mascotas' %}'" class="btn btn-danger">Cancelar</button>
+      <button onclick= "location.href='{% url 'Portal de Padres' %}'" class="btn btn-danger">Cancelar</button>
     </div>
   </div>
 </div>

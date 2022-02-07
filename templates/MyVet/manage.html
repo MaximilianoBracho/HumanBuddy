@@ -1,12 +1,65 @@
 <!-- templates/managecompany.html -->
 {% extends 'base.html' %}
 
-{% block title %} Gestión de Veterinaria {% endblock %}
+{% block title %} Portal de Veterinarias {% endblock %}
 
 {% block content %}
 {% if user.is_authenticated %}
   Hola {{ user.username }}!
-  Estás en el portal de Administración de tu Veterinaria
+  Estás en el portal de Veterinarias
 
-  {% endif %}
-  {% endblock %}
+  <table class="tg">
+    <tr>
+        <th>ID</th>
+        <th>CUIT</th>
+        <th>Razón Social</th>
+        <th>Nombre</th>
+        <th>Fecha de Inscripción</th>
+        <th>Dirección Fiscal</th>
+        <th>Dirección Real</th>
+        <th>Teléfono</th>
+        <th>Mail</th>
+        <th>Fecha de Alta</th>
+        <th>Activo</th>
+    </tr>
+    
+    {% for v in vets %}
+      <tr>    
+          <td>{{v.id}}</td>
+          <td>{{v.fiscal_id}}</td>
+          <td>{{v.fiscal_name}}</td>
+          <td>{{v.name}}</td>
+          <td>{{v.start_date}}</td>
+          <td>{{v.fiscal_address}}</td>
+          <td>{{v.real_address}}</td>
+          <td>{{v.phone}}</td>
+          <td>{{v.mail}}</td>
+          <td>{{v.creation_date}}</td>
+          <td>{{v.active}}</td>
+          <td><button onclick="open_modal('{% url 'Editar Veterinarias' v.id %}')" class="btn btn-secondary">Editar</button></td>
+          <td><button onclick= "location.href='{% url 'Eliminar Veterinarias' v.id %}'" class="btn btn-danger">Eliminar</button></td>
+
+      </tr>
+    {% endfor %}
+  </table>
+
+  <button onclick="open_modal('{% url 'Alta de Veterinaria'%}')" class="btn btn-primary">Alta de Veterinaria</button>
+
+  <div class="modal fade" id="modal" role="dialog"></div>
+{% endif %}
+{% endblock %}
+
+{% block extrajs %}
+
+  <script type="text/javascript">
+    
+    var $ = jQuery.noConflict();
+
+    function open_modal(url){
+      $('#modal').load(url, function(){
+        $(this).modal('show')
+      })
+    }
+
+  </script>
+{% endblock extrajs %}
