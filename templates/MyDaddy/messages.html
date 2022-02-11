@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %} Centro de Mensajería {% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hola {{ user.username }}!
+  Estás en el portal de Mensajes
+
+  <style type="text/css">
+    .tg  {border-collapse:collapse;border-spacing:0;}
+    .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg .tg-0lax{text-align:middle;vertical-align:middle}
+  </style>
+  
+  <table class="tg">
+    <tr>
+        <th>ID</th>
+        <th>Remitente</th>
+        <th>Fecha de Envío</th>
+        <th>Mensaje</th>
+    </tr>
+    
+    {% for m in messages %}
+      <tr>    
+          <td>{{m.id}}</td>
+          <td>{{m.sender_user_id}}</td>
+          <td>{{m.timestamp}}</td>
+          <td>{{m.message}}</td>
+          <td><button onclick="open_modal('{% url 'Responder Veterinario' m.sender_user_id %}')" class="btn btn-primary">Responder</button></td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <p>
+    <button onclick= "location.href='{% url 'Portal de Padres' %}'" class="btn btn-danger">Volver</button>
+  </p>
+
+  <div class="modal fade" id="modal" role="dialog"></div>
+
+{% endif %}
+{% endblock content %}
+
+{% block extrajs %}
+
+  <script type="text/javascript">
+    
+    var $ = jQuery.noConflict();
+
+    function open_modal(url){
+      $('#modal').load(url, function(){
+        $(this).modal('show')
+      })
+    }
+
+  </script>
+{% endblock extrajs %}

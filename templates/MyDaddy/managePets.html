@@ -34,7 +34,7 @@
           <td>{{p.id}}</td>
           <td>{{p.nickname}}</td>
           <td>{{p.birthdate}}</td>
-          <td>{{p.vetId}}</td>
+          <td>{{p.vet_id}}</td>
           <td>{{p.species}}</td>
           <td>{{p.family}}</td>
           <td>{{p.race}}</td>
@@ -42,8 +42,9 @@
           <td>{{p.description}}</td>
           <td>{{p.creation_date}}</td>
           <td>{{p.active}}</td>
-          <td><button onclick="open_modal('{% url 'Editar Mascotas' p.id %}')" class="btn btn-secondary">Editar</button></td>
+          <td><button onclick="open_modal('{% url 'Editar Mascotas' p.id %}')" class="btn btn-primary">Editar</button></td>
           <td><button onclick= "location.href='{% url 'Eliminar Mascotas' p.id %}'" class="btn btn-danger">Eliminar</button></td>
+          <td><button onclick="open_modal('{% url 'Atenciones' p.id %}')" class="btn btn-secondary">Ver Atenciones</button></td>
       </tr>
     {% endfor %}
   </table>

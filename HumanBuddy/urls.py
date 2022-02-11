@@ -19,7 +19,7 @@ from django.conf.urls import include
 from HumanBuddy import views
 
 urlpatterns = [
-    path('',views.home),
+    path('',views.home, name="Inicio"),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('accounts.urls')),

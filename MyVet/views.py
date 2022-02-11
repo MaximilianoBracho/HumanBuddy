@@ -2,6 +2,7 @@ from ast import And
 from django.shortcuts import redirect, render
 from MyVet.models import Vet, Veterinarian, Employee
 from MyVet.forms import VetForm, VeterinarianForm, EmployeeForm
+from django.contrib.auth.models import User, Group
 
 # Create your views here.
 
@@ -119,6 +120,10 @@ def addVeterinarian(request,vetID):
             
             veterinarian.save()
             
+            user = User.objects.get(id=veterinarian.user_id)
+            group = Group.objects.get(name='Veterinarian')
+            user.groups.add(group)
+            
         return redirect('Gestión de Veterinarios',veterinarian.vet_id)
             
     else:
@@ -201,6 +206,10 @@ def addEmployee(request,vetID):
             )
             
             employee.save()
+            
+            user = User.objects.get(id=employee.user_id)
+            group = Group.objects.get(name='Employee')
+            user.groups.add(group)
             
         return redirect('Gestión de Empleados',employee.vet_id)
             

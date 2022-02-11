@@ -3,6 +3,9 @@ from django.shortcuts import redirect, render
 from django.template import loader
 from MyDaddy.models import Pet, Daddy
 from MyDaddy.forms import DaddyForm, PetForm
+from MyVet.models import Veterinarian
+from MyCare.models import CareAttention, Message
+from MyCare.forms import MessageForm
 
 def manage(request):
     
@@ -164,4 +167,51 @@ def deletePets(request,petID):
     pet.delete()
     
     return redirect('Gestión de Mascotas')
+
+
+def messages(request):
+    
+    user=request.user
+    
+    messages = Message.objects.filter(receiver_user_id=user.id)
+    v_context = {"messages":messages}          
+            
+    return render(request, 'MyDaddy/messages.html',v_context)
+
+def replyVeterinarian(request, veterinarianID):
+    
+    if(request.method == 'POST'):
+        
+        v_form = MessageForm(request.POST)
+        
+        if v_form.is_valid():
+            
+            user=request.user
+            
+            data = v_form.cleaned_data
+            
+            message = Message(
+                sender_user_id=user.id,
+                receiver_user_id=veterinarianID,
+                message=data['message']
+            )
+            
+            message.save()
+            
+        return redirect('Mensajes de Padre')
+            
+    else:
+            
+        v_form = MessageForm()
+            
+        return render(request, 'MyDaddy/replyVeterinarian.html',{"form": v_form, "veterinarianID": veterinarianID})
+    
+def viewCares(request, petID):
+    
+    cares= CareAttention.objects.filter(pet_id=petID)
+    v_context = {"cares":cares}          
+            
+    return render(request, 'MyDaddy/viewCares.html',v_context)
+    
+    
                         

@@ -22,7 +22,7 @@ class VeterinarianForm(ModelForm):
     class Meta:
         model = Veterinarian
         
-        fields = ['fiscal_id','person_id','name','surname','birthdate','address','phone','cellphone','mail','user_id','vet_id','license']
+        fields = ['fiscal_id','person_id','name','surname','birthdate','address','phone','cellphone','mail','user_id','license']
     
         widgets = {
             'birthdate': forms.DateInput(attrs={
@@ -36,7 +36,7 @@ class EmployeeForm(ModelForm):
     class Meta:
         model = Employee
         
-        fields = ['fiscal_id','person_id','name','surname','birthdate','address','phone','cellphone','mail','user_id','vet_id']
+        fields = ['fiscal_id','person_id','name','surname','birthdate','address','phone','cellphone','mail','user_id']
     
         widgets = {
             'birthdate': forms.DateInput(attrs={

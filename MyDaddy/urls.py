@@ -8,5 +8,8 @@ urlpatterns = [
     path('pets/',views.managePets, name="Gestión de Mascotas"),
     path('pets/add/',views.addPets, name="Alta de Mascotas"),
     path('pets/edit/<petID>/',views.editPets, name="Editar Mascotas"),
-    path('pets/delete/<petID>/',views.deletePets, name="Eliminar Mascotas")
+    path('pets/delete/<petID>/',views.deletePets, name="Eliminar Mascotas"),
+    path('pets/cares/<petID>/',views.viewCares, name="Atenciones"),
+    path('messages',views.messages, name="Mensajes de Padre"),
+    path('message/replay/<veterinarianID>/',views.replyVeterinarian, name="Responder Veterinario")  
 ]

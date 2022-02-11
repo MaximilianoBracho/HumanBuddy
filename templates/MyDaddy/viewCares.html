@@ -1,0 +1,35 @@
+<div class="modal-dialog modal-lg" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">Ver Atenciones</h2>
+    </div>
+    <div class="modal-body">
+      <table class="tg">
+        <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Motivo</th>
+            <th>Diagnóstico</th>
+            <th>Tratamiento</th>
+            <th>Veterinaria</th>
+            <th>Veterinaria</th>
+        </tr>
+        
+        {% for c in cares %}
+          <tr>    
+              <td>{{c.id}}</td>
+              <td>{{c.timestamp}}</td>
+              <td>{{c.motive}}</td>
+              <td>{{c.diagnosis}}</td>
+              <td>{{c.treatment}}</td>
+              <td>{{c.vet_id}}</td>
+              <td>{{c.veterinarian_id}}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+    <div class="modal-footer">
+      <button onclick= "location.href='{% url 'Gestión de Mascotas' %}'" class="btn btn-danger">Cancelar</button>
+    </div>
+  </div>
+</div>

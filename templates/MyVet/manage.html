@@ -38,8 +38,8 @@
           <td>{{v.active}}</td>
           <td><button onclick="open_modal('{% url 'Editar Veterinaria' v.id %}')" class="btn btn-secondary">Editar</button></td>
           <td><button onclick= "location.href='{% url 'Eliminar Veterinaria' v.id %}'" class="btn btn-danger">Eliminar</button></td>
-          <td><button onclick= "location.href='{% url 'Gestión de Veterinarios' v.id %}'" class="btn btn-danger">Gestionar Veterinarios</button></td>
-          <td><button onclick= "location.href='{% url 'Gestión de Empleados' v.id %}'" class="btn btn-danger">Gestionar Empleados</button></td>
+          <td><button onclick= "location.href='{% url 'Gestión de Veterinarios' v.id %}'" class="btn btn-primary">Gestionar Veterinarios</button></td>
+          <td><button onclick= "location.href='{% url 'Gestión de Empleados' v.id %}'" class="btn btn-primary">Gestionar Empleados</button></td>
 
       </tr>
     {% endfor %}
