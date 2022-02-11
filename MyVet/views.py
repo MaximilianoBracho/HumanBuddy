@@ -1,8 +1,7 @@
-from django.http import HttpResponse
+from ast import And
 from django.shortcuts import redirect, render
-from django.template import loader
-from MyVet.models import Vet
-from SiteAdmin.forms import VetForm
+from MyVet.models import Vet, Veterinarian, Employee
+from MyVet.forms import VetForm, VeterinarianForm, EmployeeForm
 
 # Create your views here.
 
@@ -40,7 +39,7 @@ def addVet(request):
             
             vet.save()
             
-        return redirect('Gestión de Veterinaria')
+        return redirect('Gestión de Veterinarias')
             
     else:
             
@@ -62,7 +61,7 @@ def editVet(request,vetID):
             
             v_form.save()
             
-        return redirect('Gestión de Veterinaria')
+        return redirect('Gestión de Veterinarias')
             
     else:
             
@@ -79,9 +78,175 @@ def editVet(request,vetID):
         
         return render(request, 'MyVet/editVet.html',{"form": v_form, "id":vet.id})
     
-def deleteVets(request, vetID):
+def deleteVet(request, vetID):
     
     vet = Vet.objects.get(id=vetID)
     vet.delete()
     
-    return redirect('Gestión de Veterinaria')
+    return redirect('Gestión de Veterinarias')
+
+def manageVeterinarians(request,vetID):
+      
+    veterinarians = Veterinarian.objects.filter(vet_id=vetID)
+    v_context = {"veterinarians":veterinarians,"vetID":vetID}          
+            
+    return render(request, 'MyVet/manageVeterinarians.html',v_context)
+
+def addVeterinarian(request,vetID):
+    
+    if(request.method == 'POST'):
+        
+        v_form = VeterinarianForm(request.POST)
+        
+        if v_form.is_valid():
+            
+            data = v_form.cleaned_data
+
+            veterinarian = Veterinarian(
+                fiscal_id=data["fiscal_id"],
+                person_id=data["person_id"],
+                name=data["name"],
+                surname=data["surname"],
+                birthdate=data["birthdate"],
+                address=data["address"],
+                phone=data["phone"],
+                cellphone=data["cellphone"],
+                mail=data["mail"],
+                user_id=data["user_id"],
+                vet_id=vetID,
+                license=data["license"]   
+            )
+            
+            veterinarian.save()
+            
+        return redirect('Gestión de Veterinarios',veterinarian.vet_id)
+            
+    else:
+            
+        v_form = VeterinarianForm()
+            
+        return render(request, 'MyVet/addVeterinarian.html',{"form": v_form,"vetID":vetID})
+    
+def editVeterinarian(request,vetID, veterinarianID):
+    
+    veterinarian = Veterinarian.objects.get(id=veterinarianID, vet_id=vetID)
+        
+    if(request.method == 'POST'):
+        
+        v_form = VeterinarianForm(request.POST, instance=veterinarian)
+        
+        print(v_form)
+        
+        if v_form.is_valid():
+            
+            v_form.save()
+            
+        return redirect('Gestión de Veterinarios',vetID)
+            
+    else:
+            
+        v_form = VeterinarianForm(initial={
+                "fiscal_id":veterinarian.fiscal_id,
+                "person_id":veterinarian.person_id,
+                "name":veterinarian.name,
+                "surname":veterinarian.surname,
+                "birthdate":veterinarian.birthdate,
+                "address":veterinarian.address,
+                "phone":veterinarian.phone,
+                "cellphone":veterinarian.cellphone,
+                "mail":veterinarian.mail,
+                "user_id":veterinarian.user_id,
+                "vet_id":vetID,
+                "license":veterinarian.license
+            })
+        
+        return render(request, 'MyVet/editVeterinarian.html',{"form": v_form, "vetID":vetID, "veterinarianID":veterinarian.id}) 
+    
+def deleteVeterinarian(request, vetID, veterinarianID):
+    
+    veterinarian = Veterinarian.objects.get(id=veterinarianID, vet_id=vetID)
+    veterinarian.delete()
+    
+    return redirect('Gestión de Veterinarios',vetID)
+
+def manageEmployees(request,vetID):
+      
+    employees = Employee.objects.filter(vet_id=vetID)
+    v_context = {"employees":employees,"vetID":vetID}         
+            
+    return render(request, 'MyVet/manageEmployees.html',v_context)
+
+def addEmployee(request,vetID):
+    
+    if(request.method == 'POST'):
+        
+        v_form = EmployeeForm(request.POST)
+        
+        if v_form.is_valid():
+            
+            data = v_form.cleaned_data
+
+            employee = Employee(
+                fiscal_id=data["fiscal_id"],
+                person_id=data["person_id"],
+                name=data["name"],
+                surname=data["surname"],
+                birthdate=data["birthdate"],
+                address=data["address"],
+                phone=data["phone"],
+                cellphone=data["cellphone"],
+                mail=data["mail"],
+                user_id=data["user_id"],
+                vet_id=vetID
+            )
+            
+            employee.save()
+            
+        return redirect('Gestión de Empleados',employee.vet_id)
+            
+    else:
+            
+        v_form = EmployeeForm()
+            
+        return render(request, 'MyVet/addEmployee.html',{"form": v_form,"vetID":vetID})
+    
+def editEmployee(request, vetID, employeeID):
+    
+    employee = Employee.objects.get(id=employeeID, vet_id=vetID)
+        
+    if(request.method == 'POST'):
+        
+        v_form = EmployeeForm(request.POST, instance=employee)
+        
+        print(v_form)
+        
+        if v_form.is_valid():
+            
+            v_form.save()
+            
+        return redirect('Gestión de Empleados',vetID)
+            
+    else:
+            
+        v_form = EmployeeForm(initial={
+                "fiscal_id":employee.fiscal_id,
+                "person_id":employee.person_id,
+                "name":employee.name,
+                "surname":employee.surname,
+                "birthdate":employee.birthdate,
+                "address":employee.address,
+                "phone":employee.phone,
+                "cellphone":employee.cellphone,
+                "mail":employee.mail,
+                "user_id":employee.user_id,
+                "vet_id":vetID
+            })
+        
+        return render(request, 'MyVet/editEmployee.html',{"form": v_form, "vetID":vetID, "employeeID":employee.id}) 
+    
+def deleteEmployee(request, vetID, employeeID):
+    
+    employee = Employee.objects.get(id=employeeID, vet_id=vetID)
+    employee.delete()
+    
+    return redirect('Gestión de Empleados',vetID)

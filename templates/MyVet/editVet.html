@@ -4,7 +4,7 @@
       <h2 class="modal-title">Edición de Veterinaria</h2>
     </div>
     <div class="modal-body">
-      <form action ="{% url 'Editar Veterinaria' id %}" method="POST">{% csrf_token %}
+      <form action ="{% url 'Editar Veterinaria' vetID %}" method="POST">{% csrf_token %}
 
         <table>
             
@@ -16,7 +16,7 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button onclick= "location.href='{% url 'Gestión de Veterinaria' %}'" class="btn btn-danger">Cancelar</button>
+      <button onclick= "location.href='{% url 'Gestión de Veterinarias' %}'" class="btn btn-danger">Cancelar</button>
     </div>
   </div>
 </div>

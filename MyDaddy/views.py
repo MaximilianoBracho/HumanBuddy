@@ -1,11 +1,8 @@
-from http.client import UnknownTransferEncoding
-from webbrowser import get
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template import loader
 from MyDaddy.models import Pet, Daddy
-from MyDaddy.forms import PetForm
-from SiteAdmin.forms import DaddyForm
+from MyDaddy.forms import DaddyForm, PetForm
 
 def manage(request):
     

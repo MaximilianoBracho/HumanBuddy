@@ -1,9 +1,11 @@
-from django.http import HttpResponse, HttpResponsePermanentRedirect
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template import loader
 from MyVet.models import Vet
+from MyVet.forms import VetForm
 from MyDaddy.models import Daddy
-from SiteAdmin.forms import VetForm, DaddyForm
+from MyDaddy.forms import DaddyForm
+
 
 # Create your views here.
 

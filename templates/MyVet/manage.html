@@ -36,14 +36,16 @@
           <td>{{v.mail}}</td>
           <td>{{v.creation_date}}</td>
           <td>{{v.active}}</td>
-          <td><button onclick="open_modal('{% url 'Editar Veterinarias' v.id %}')" class="btn btn-secondary">Editar</button></td>
-          <td><button onclick= "location.href='{% url 'Eliminar Veterinarias' v.id %}'" class="btn btn-danger">Eliminar</button></td>
+          <td><button onclick="open_modal('{% url 'Editar Veterinaria' v.id %}')" class="btn btn-secondary">Editar</button></td>
+          <td><button onclick= "location.href='{% url 'Eliminar Veterinaria' v.id %}'" class="btn btn-danger">Eliminar</button></td>
+          <td><button onclick= "location.href='{% url 'Gestión de Veterinarios' v.id %}'" class="btn btn-danger">Gestionar Veterinarios</button></td>
+          <td><button onclick= "location.href='{% url 'Gestión de Empleados' v.id %}'" class="btn btn-danger">Gestionar Empleados</button></td>
 
       </tr>
     {% endfor %}
   </table>
 
-  <button onclick="open_modal('{% url 'Alta de Veterinaria'%}')" class="btn btn-primary">Alta de Veterinaria</button>
+  <button onclick="open_modal('{% url 'Alta de Veterinaria' %}')" class="btn btn-primary">Alta de Veterinaria</button>
 
   <div class="modal fade" id="modal" role="dialog"></div>
 {% endif %}

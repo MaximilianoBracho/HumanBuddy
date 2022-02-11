@@ -42,7 +42,6 @@ class Employee(Person):
     
     fiscal_id=models.CharField('CUIL',max_length=11,default="")
     cargo=models.CharField('Cargo',max_length=50,default="")
-    company_id=models.IntegerField()
     
     class Meta:
         abstract = True

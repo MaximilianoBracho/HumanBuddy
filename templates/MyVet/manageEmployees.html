@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %} Gestión de Empleados {% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hola {{ user.username }}!
+  Estás en el portal de Administración de Empleados
+
+  <style type="text/css">
+    .tg  {border-collapse:collapse;border-spacing:0;}
+    .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg .tg-0lax{text-align:middle;vertical-align:middle}
+  </style>
+  
+  <table class="tg">
+    <tr>
+        <th>ID</th>
+        <th>DNI</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Fecha de Nacimiento</th>
+        <th>Dirección</th>
+        <th>Teléfono</th>
+        <th>Celular</th>
+        <th>Mail</th>
+        <th>Usuario</th>
+        <th>Veterinaria</th>
+        <th>Fecha de Alta</th>
+        <th>Activo</th>
+    </tr>
+    
+    {% for e in employees %}
+      <tr>    
+          <td>{{e.id}}</td>
+          <td>{{e.person_id}}</td>
+          <td>{{e.name}}</td>
+          <td>{{e.surname}}</td>
+          <td>{{e.birthdate}}</td>
+          <td>{{e.address}}</td>
+          <td>{{e.phone}}</td>
+          <td>{{e.cellphone}}</td>
+          <td>{{e.mail}}</td>
+          <td>{{e.user_id}}</td>
+          <td>{{e.vet_id}}</td>
+          <td>{{e.creation_date}}</td>
+          <td>{{e.active}}</td>
+          <td><button onclick="open_modal('{% url 'Editar Empleado' e.vet_id e.id %}')" class="btn btn-secondary">Editar</button></td>
+          <td><button onclick= "location.href='{% url 'Eliminar Empleado' e.vet_id e.id %}'" class="btn btn-danger">Eliminar</button></td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <p>
+    <button onclick="open_modal('{% url 'Alta de Empleado' vetID %}')" class="btn btn-primary">Alta de Empleado</button>
+    <button onclick= "location.href='{% url 'Gestión de Veterinarias' %}'" class="btn btn-danger">Volver</button>
+  </p>
+
+  <div class="modal fade" id="modal" role="dialog"></div>
+
+{% endif %}
+{% endblock content %}
+
+{% block extrajs %}
+
+  <script type="text/javascript">
+    
+    var $ = jQuery.noConflict();
+
+    function open_modal(url){
+      $('#modal').load(url, function(){
+        $(this).modal('show')
+      })
+    }
+
+  </script>
+{% endblock extrajs %}
+

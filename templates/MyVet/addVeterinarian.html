@@ -1,10 +1,10 @@
 <div class="modal-dialog modal-lg" role="document">
   <div class="modal-content">
     <div class="modal-header">
-      <h2 class="modal-title">Alta de Veterinaria</h2>
+      <h2 class="modal-title">Alta de Veterinario</h2>
     </div>
     <div class="modal-body">
-      <form action ="{% url 'Alta de Veterinaria' %}" method="POST">{% csrf_token %}
+      <form action ="{% url 'Alta de Veterinario' vetID %}" method="POST">{% csrf_token %}
 
         <table>
             
@@ -16,7 +16,7 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button onclick= "location.href='{% url 'Gestión de Veterinarias' %}'" class="btn btn-danger">Cancelar</button>
+      <button onclick= "location.href='{% url 'Gestión de Veterinarios' vetID %}'" class="btn btn-danger">Cancelar</button>
     </div>
   </div>
 </div>
