@@ -4,6 +4,7 @@ from django.template import loader
 from MyVet.models import Vet
 from MyDaddy.models import Daddy
 from SiteAdmin.forms import VetFormAdmin, DaddyFormAdmin
+from django.contrib.auth.models import Group, User
 
 # Create your views here.
 
@@ -46,6 +47,10 @@ def addVets(request):
             )
             
             vet.save()
+            
+            user=User.objects.get(id=vet.user_id)
+            group = Group.objects.get(name='Vet')
+            user.groups.add(group)
             
         return redirect('Gestión de Veterinarias')
             
