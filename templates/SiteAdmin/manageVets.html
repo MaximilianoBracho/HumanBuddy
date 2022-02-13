@@ -25,6 +25,7 @@
         <th>Dirección Real</th>
         <th>Teléfono</th>
         <th>Mail</th>
+        <th>Usuario Admin</th>
         <th>Fecha de Alta</th>
         <th>Activo</th>
     </tr>
@@ -40,6 +41,7 @@
           <td>{{v.real_address}}</td>
           <td>{{v.phone}}</td>
           <td>{{v.mail}}</td>
+          <td>{{v.user_id}}</td>
           <td>{{v.creation_date}}</td>
           <td>{{v.active}}</td>
           <td><button onclick="open_modal('{% url 'Editar Veterinarias' v.id %}')" class="btn btn-secondary">Editar</button></td>

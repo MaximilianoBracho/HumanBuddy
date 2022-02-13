@@ -1,5 +1,9 @@
-# HumanBuddy
+# Repositorio de Proyecto Final de Camada 23855 de Python
 
+Integrantes:
+    - Maximiliano Bracho | DNI 34.433.679
+
+# HumanBuddy
 HumanBuddy es una plataforma y red social de todos aquellos amantes de los animales.
 En HummanBuddy consideramos como familia a nuestras mascotas, y las cuidamos en consecuencia.
 

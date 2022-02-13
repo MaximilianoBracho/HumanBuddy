@@ -40,7 +40,7 @@ def addVet(request):
             
             vet.save()
             
-        return redirect('Gestión de Veterinarias')
+        return redirect('Gestión de Veterinaria')
             
     else:
             
@@ -62,7 +62,7 @@ def editVet(request,vetID):
             
             v_form.save()
             
-        return redirect('Gestión de Veterinarias')
+        return redirect('Gestión de Veterinaria')
             
     else:
             
@@ -77,14 +77,14 @@ def editVet(request,vetID):
                 "mail":vet.mail
             })
         
-        return render(request, 'MyVet/editVet.html',{"form": v_form, "id":vet.id})
+        return render(request, 'MyVet/editVet.html',{"form": v_form, "vetID":vet.id})
     
 def deleteVet(request, vetID):
     
     vet = Vet.objects.get(id=vetID)
     vet.delete()
     
-    return redirect('Gestión de Veterinarias')
+    return redirect('Gestión de Veterinaria')
 
 def manageVeterinarians(request,vetID):
       

@@ -2,7 +2,7 @@ from django.urls import path
 from MyVet import views
 
 urlpatterns = [
-    path('',views.manage, name="Gestión de Veterinarias"),
+    path('',views.manage, name="Gestión de Veterinaria"),
     path('add/',views.addVet, name="Alta de Veterinaria"),
     path('edit/<vetID>/',views.editVet, name="Editar Veterinaria"),
     path('delete/<vetID>/',views.deleteVet, name="Eliminar Veterinaria"),

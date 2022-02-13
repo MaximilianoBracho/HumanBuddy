@@ -2,10 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template import loader
 from MyVet.models import Vet
-from MyVet.forms import VetForm
 from MyDaddy.models import Daddy
-from MyDaddy.forms import DaddyForm
-
+from SiteAdmin.forms import VetFormAdmin, DaddyFormAdmin
 
 # Create your views here.
 
@@ -30,7 +28,7 @@ def addVets(request):
     
     if(request.method == 'POST'):
         
-        v_form = VetForm(request.POST)
+        v_form = VetFormAdmin(request.POST)
         
         if v_form.is_valid():
             
@@ -53,7 +51,7 @@ def addVets(request):
             
     else:
             
-        v_form = VetForm()
+        v_form = VetFormAdmin()
             
         return render(request, 'SiteAdmin/addVets.html',{"form": v_form})
     
@@ -63,7 +61,7 @@ def editVets(request,vetID):
         
     if(request.method == 'POST'):
         
-        v_form = VetForm(request.POST, instance=vet)
+        v_form = VetFormAdmin(request.POST, instance=vet)
         
         print(v_form)
         
@@ -75,7 +73,7 @@ def editVets(request,vetID):
             
     else:
             
-        v_form = VetForm(initial={
+        v_form = VetFormAdmin(initial={
                 "fiscal_id":vet.fiscal_id,
                 "fiscal_name":vet.fiscal_name,
                 "name":vet.name,
@@ -108,7 +106,7 @@ def addDaddies(request):
     
     if(request.method == 'POST'):
         
-        v_form = DaddyForm(request.POST)
+        v_form = DaddyFormAdmin(request.POST)
         
         if v_form.is_valid():
             
@@ -131,7 +129,7 @@ def addDaddies(request):
             
     else:
             
-        v_form = DaddyForm()
+        v_form = DaddyFormAdmin()
             
         return render(request, 'SiteAdmin/addDaddies.html',{"form": v_form})
     
@@ -141,7 +139,7 @@ def editDaddies(request,daddyID):
         
     if(request.method == 'POST'):
         
-        v_form = DaddyForm(request.POST, instance=daddy)
+        v_form = DaddyFormAdmin(request.POST, instance=daddy)
         
         print(v_form)
         
@@ -153,7 +151,7 @@ def editDaddies(request,daddyID):
             
     else:
             
-        v_form = DaddyForm(initial={
+        v_form = DaddyFormAdmin(initial={
                 "person_id":daddy.person_id,
                 "name":daddy.name,
                 "surname":daddy.surname,
